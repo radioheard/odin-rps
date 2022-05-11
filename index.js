@@ -5,8 +5,7 @@ function computerPlay () {
 }   
 
 let computerSelection = computerPlay();
-console.log(computerSelection)
-let playerSelection = prompt('Choose your element!');
+let playerSelection = undefined;
 let playerScore = 0;
 let computerScore = 0;
 
@@ -32,14 +31,25 @@ function playRound (playerSelection, computerSelection) {
         alert("You lose!");
         computerScore++;
     } else {
-        alert("whaaaaa?")
+        alert("whaaaaa?");
     }
     }
 function game() {
     for (let i = 0; i < 5; i++) {
-        playRound(playerSelection.toLowerCase(), computerSelection)
-        console.log(`the score is: ${playerScore} human ${computerScore} machine`)
+        computerSelection = computerPlay();
+        playerSelection = prompt('Choose your element!');
+        playRound(playerSelection.toLowerCase(), computerSelection);
+        alert(`the score is: ${playerScore} human ${computerScore} machine`);
+        
      }
 }
 
-game()
+game();
+
+if (computerScore > playerScore) {
+    alert("Fs in the chat, computer wins!");
+} else if (computerScore < playerScore) {
+    alert("You win the game! GGWW")
+} else {
+    alert("No way man! It's a bloody tie!")
+}
