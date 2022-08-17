@@ -1,37 +1,48 @@
+function game () {
+    let body = document.getElementById('body')
+    let win = document.createElement('div');
+    let winner = undefined
+    body.appendChild(win);
+
+    if (computerScore === 5) {
+        winner = document.createTextNode("F's in the chat, computer wins!")
+        win.appendChild(winner);
+    } else if (playerScore === 5) {
+        winner = document.createTextNode("Congratulations, you win! GGWW")
+        win.appendChild(winner);        
+    }
+}
+
 function computerPlay () {
     const choices = ["rock", "paper", "scissors"] ;
     let roll = choices[Math.floor(Math.random() * choices.length)];
     return roll;
 }   
 
-function playRound (a, b) {
+function playRound (a, b) {   
     alert(`The computer picked ${b}`);
     if (a === b) {
-        alert("It's a tie!") ;
     } else if (a == 'rock' && b =='paper') {
-        alert("You lose!");
         computerScore++;
     } else if (a == 'rock' && b == 'scissors') {
-        alert("You win!");
         playerScore++;
     } else if (a == 'paper' && b == 'rock') {
-        alert("You win!");
         playerScore++;
     } else if (a == 'paper' && b == 'scissors') {
-        alert("You lose!");
         computerScore++;
     } else if (a == 'scissors' && b == 'paper') {
-        alert("You win!");
         playerScore++;
     } else if (a == 'scissors' && b == 'rock') {
-        alert("You lose!");
         computerScore++;
     }
-    console.log(`the score is ${playerScore} to ${computerScore}`)
+    score.nodeValue = `Player ${playerScore} Computer ${computerScore}`
 }
-    
+
 let playerScore = 0;
 let computerScore = 0;
+let scoreboard = document.getElementById('score');
+let score = document.createTextNode(`Player ${playerScore} Computer ${computerScore}`);
+scoreboard.appendChild(score);
 
 
 let scissors = document.getElementById('scissors');
@@ -47,6 +58,7 @@ paper.addEventListener('click', () => {
     playRound('paper', computerPlay())
 })
 
+game();
 
 
 
