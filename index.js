@@ -1,16 +1,17 @@
 function game () {
-    let body = document.getElementById('body')
-    let win = document.createElement('div');
+    
     let winner = undefined
-    body.appendChild(win);
-
     if (computerScore === 5) {
         winner = document.createTextNode("F's in the chat, computer wins!")
         win.appendChild(winner);
+        win.appendChild(button);
+
     } else if (playerScore === 5) {
         winner = document.createTextNode("Congratulations, you win! GGWW")
-        win.appendChild(winner);        
+        win.appendChild(winner);
+        win.appendChild(button);        
     }
+
 }
 
 function computerPlay () {
@@ -36,13 +37,21 @@ function playRound (a, b) {
         computerScore++;
     }
     score.nodeValue = `Player ${playerScore} Computer ${computerScore}`
+    game();
 }
+
 
 let playerScore = 0;
 let computerScore = 0;
 let scoreboard = document.getElementById('score');
 let score = document.createTextNode(`Player ${playerScore} Computer ${computerScore}`);
 scoreboard.appendChild(score);
+let win = document.getElementById('win');
+
+let button = document.createElement('button');
+button.innerHTML = "Rematch?";
+button.addEventListener ('click', () => window.location.reload())
+
 
 
 let scissors = document.getElementById('scissors');
@@ -58,7 +67,7 @@ paper.addEventListener('click', () => {
     playRound('paper', computerPlay())
 })
 
-game();
+
 
 
 
